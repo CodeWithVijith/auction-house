@@ -1,0 +1,14 @@
+{
+  "name": "auction-house",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Premium player auction workspace with Excel import, live budgets and unsold rounds",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs",
+    "test": "node scripts/test.mjs"
+  }
+}

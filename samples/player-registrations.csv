@@ -1,0 +1,7 @@
+"RegistrationID","FullName","Role","Category","Age","City","Email","Phone","JerseySize"
+"PL-001","Arjun Mehta","Batter","Senior","24","Bengaluru","arjun@example.com","9000000001","M"
+"PL-002","Rohan Nair","All-rounder","Senior","26","Kochi","rohan@example.com","9000000002","L"
+"PL-003","Karthik Rao","Bowler","Senior","23","Hyderabad","karthik@example.com","9000000003","M"
+"PL-004","Dev Sharma","Wicketkeeper","Junior","21","Pune","dev@example.com","9000000004","S"
+"PL-005","Sahil Khan","Batter","Senior","25","Mumbai","sahil@example.com","9000000005","L"
+"PL-006","Vikram Patel","Bowler","Junior","22","Ahmedabad","vikram@example.com","9000000006","M"
