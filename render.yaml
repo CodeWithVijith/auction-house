@@ -3,7 +3,7 @@ services:
     name: auction-house
     runtime: node
     plan: free
-    buildCommand: npm ci && npm run build
+    buildCommand: npm ci --include=dev && npm run build
     startCommand: npm run api:migrate && npm run api:bootstrap && npm run api:start
     healthCheckPath: /api/health
     envVars:
