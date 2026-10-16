@@ -41,7 +41,7 @@ Amounts are numeric cells with separate unit labels. INR exports use rupees with
 
 ## Persistence and recovery
 
-This baseline has **one browser-local event**, not a shared backend. There is no login, payments, bidder portal, direct Google Forms connection, cloud backup, or cross-device synchronization. Browsers, profiles, origins, ports, and devices have separate data. Clearing site data deletes the event. Export completed results before clearing storage. JSON backup/restore is outside this build.
+The completed auction UI currently runs one browser-local event. The production API foundation now provides PostgreSQL-backed login, organizations, roles, sessions, and event creation, but the auction UI has not yet been switched to that API. Until that integration phase is complete, browsers, profiles, origins, ports, and devices have separate auction data. Clearing site data deletes the local event, so export completed results first.
 
 `AuctionRepository` hides IndexedDB access. Each command reads the latest validated snapshot, checks its revision, applies domain validation, and saves in one transaction. Budgets and squad counts are derived from immutable outcomes plus corrections. Money uses safe integer points or paise. Failed saves preserve the previous snapshot. Other tabs receive updates; stale writes are rejected and stale timers/forms canceled.
 
@@ -53,7 +53,13 @@ Storage errors are shown on screen. Check site storage permissions and free disk
 
 The desktop auction fills the viewport, with scrolling confined to panels where necessary. At narrow widths, team cards scroll inside their rail. Tables scroll inside their panels, and dialogs remain within the viewport. Pages do not overflow horizontally. Forms have accessible labels and focus indicators; native modal dialogs contain focus, support Escape, and restore focus. Reduced motion shortens wheel feedback. Reveal/outcome announcements remain available to screen readers without a redundant visible status line. The round appears in the stage status row.
 
-System font fallbacks keep the app usable without font downloads. The reference site could not be fetched during implementation, so the explicit dark/gold layout specification was followed.
+System font fallbacks keep the app usable without font downloads. An authenticated read-only review of NeoAuction confirmed the five-screen operational structure; Auction House retains its dark/gold identity and the requested spreadsheet-first registration flow.
+
+## Production API foundation
+
+The first backend slice is in `server/`. It provides authenticated, organization-scoped event creation on PostgreSQL while the complete auction UI continues using browser-local persistence. See [server/README.md](server/README.md) for database migration, administrator bootstrap, and API launch instructions.
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for local acceptance testing and one-click Render Blueprint deployment.
 
 ## Verification
 

@@ -6,6 +6,18 @@ Updated: 16 October 2026 (Asia/Calcutta).
 
 All core requirements F01-F20 are implemented. No core feature remains pending. The original execution plan and previous JavaScript application files are retained; the active application now enters through the root index.html and src/main.tsx. No public deployment, paid service, credentials, or unrelated source edits were introduced.
 
+Production full-stack work has started from `AUCTION_HOUSE_FULL_STACK_PRODUCT_PLAN.md`. The first server vertical slice now includes a Fastify API, PostgreSQL migration and repository, Argon2 password verification, HTTP-only sessions, CSRF protection, organization and role authorization, health/login/logout/current-user endpoints, and organization-scoped event creation/listing. The browser-local auction remains operational while later phases connect its complete auction workflow to the API.
+
+## Production backend milestone 1
+
+- PostgreSQL foundation tables for organizations, users, memberships, sessions, and auction events.
+- Admin bootstrap command with Argon2 password hashing and transactional organization creation.
+- Secure session cookies, server-side expiry checks, CSRF tokens, and logout invalidation.
+- `ADMIN`, `ORGANIZER`, `OPERATOR`, and `VIEWER` role model; event creation limited to administrators and organizers.
+- Organization-scoped event reads and writes.
+- Local PostgreSQL Compose service, migration/bootstrap commands, API launch commands, and Vite `/api` proxy.
+- API integration tests cover unauthenticated access, invalid credentials, CSRF rejection, role rejection, event creation/listing, and session destruction.
+
 ## Completed phases
 
 - **0 - Foundation:** React + TypeScript + Vite, normal React Router routes, current dependencies and lockfile, Node 22.12+ baseline, run/check scripts, documentation. Existing fixtures and dark/gold visual direction reused.
@@ -23,7 +35,7 @@ Removed the three-line event heading above the live stage. Round information app
 
 ## Actual verification results
 
-- `npm.cmd test`: **32 tests passed** (domain, exact money, retry fixtures, correction/refund invariants, privacy, workbook read-back, repository transactions, stale revisions, storage failure rollback, migration/recovery).
+- `npm.cmd test`: **36 tests passed** (API authentication/authorization/CSRF/static routing, domain, exact money, retry fixtures, correction/refund invariants, privacy, workbook read-back, repository transactions, stale revisions, storage failure rollback, migration/recovery).
 - `npm.cmd run test:e2e`: **10 tests passed** in Chromium. Includes the entire three-round fixture, corrections and downloaded workbook read-back, refresh during selection, sidebar preservation, real XLSX upload, invalid upload retention, mapping/title rows, team/player setup, budgets/caps/unit lock, auto-next cancellation, multiple tabs, image validation/fallback, INR precision, keyboard Escape/canceled review, reset and empty setup.
 - Responsive browser checks cover every route at **320x568, 360x640, 390x844, 768x1024, 844x390, 1280x600, 1366x768, and 1920x1080**; dialogs stay in viewport; desktop Auction has no document-height overflow. Final sidebar sizing was additionally inspected against the production build.
 - `npm.cmd run lint`: passed.

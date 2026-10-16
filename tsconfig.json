@@ -11,5 +11,11 @@
     "allowImportingTsExtensions": true,
     "types": ["vite/client", "node"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "*.ts", "tests/modern/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "server/**/*.ts",
+    "*.ts",
+    "tests/modern/**/*.ts"
+  ]
 }

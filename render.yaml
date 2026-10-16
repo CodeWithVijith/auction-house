@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: auction-house
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm run api:migrate && npm run api:bootstrap && npm run api:start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 24.20.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: auction-house-db
+          property: connectionString
+      - key: BOOTSTRAP_EMAIL
+        sync: false
+      - key: BOOTSTRAP_PASSWORD
+        sync: false
+      - key: BOOTSTRAP_NAME
+        sync: false
+      - key: BOOTSTRAP_ORGANIZATION
+        sync: false
+
+databases:
+  - name: auction-house-db
+    plan: free
+    databaseName: auction_house
+    user: auction_house
+    postgresMajorVersion: '17'
