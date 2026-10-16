@@ -68,7 +68,7 @@ Render supplies `DATABASE_URL` from the managed database. Each service start app
 
 The Render build explicitly includes development dependencies because TypeScript and Vite are build tools. Runtime dependencies remain available after the build for the API process.
 
-If the first web-service deployment fails, push the latest repository changes and choose **Manual Deploy → Deploy latest commit**. The startup is safe to retry: applied migrations and an existing administrator are detected and skipped. Missing or incomplete bootstrap credentials also skip administrator creation without preventing the web service from starting. A supplied password must contain at least 12 characters.
+If the first web-service deployment fails, push the latest repository changes and choose **Manual Deploy → Deploy latest commit**. The startup is safe to retry: applied migrations and an existing administrator are detected and skipped. Leaving both bootstrap credential fields empty also skips administrator creation without preventing the web service from starting.
 
 ## Current deployment boundary
 
