@@ -66,6 +66,8 @@ The repository includes `render.yaml`. It defines one Node web service and one P
 
 Render supplies `DATABASE_URL` from the managed database. Each service start applies unapplied migrations, creates the first administrator once, builds the SPA, and serves the UI and API from one origin.
 
+If the first web-service deployment fails, push the latest repository changes and choose **Manual Deploy → Deploy latest commit**. The startup is safe to retry: applied migrations and an existing administrator are detected and skipped. Leaving both bootstrap credential fields empty also skips administrator creation without preventing the web service from starting.
+
 ## Current deployment boundary
 
 The hosted UI is fully usable, but its auction roster, teams, rounds, and results still use IndexedDB in each browser. The new server currently persists accounts, organizations, sessions, and event records. Cross-device auction synchronization will become available after the remaining team/player/import/auction API integration is completed.

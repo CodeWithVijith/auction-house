@@ -9,9 +9,15 @@ const displayName = process.env.BOOTSTRAP_NAME?.trim() || 'Auction Admin';
 const organizationName =
   process.env.BOOTSTRAP_ORGANIZATION?.trim() || 'Auction House';
 if (!connectionString) throw new Error('DATABASE_URL is required.');
+if (!email && !password) {
+  console.log(
+    'Bootstrap credentials not supplied; administrator creation skipped.',
+  );
+  process.exit(0);
+}
 if (!email || !password || password.length < 12)
   throw new Error(
-    'BOOTSTRAP_EMAIL and a 12+ character BOOTSTRAP_PASSWORD are required.',
+    'Set both BOOTSTRAP_EMAIL and a 12+ character BOOTSTRAP_PASSWORD, or leave both empty.',
   );
 
 const client = new pg.Client({ connectionString });
