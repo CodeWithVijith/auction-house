@@ -66,6 +66,8 @@ The repository includes `render.yaml`. It defines one Node web service and one P
 
 Render supplies `DATABASE_URL` from the managed database. Each service start applies unapplied migrations, creates the first administrator once, builds the SPA, and serves the UI and API from one origin.
 
+The production server binds to Render's supplied `PORT` on `0.0.0.0`, allowing the platform's port scanner and public router to reach the service.
+
 The Render build explicitly includes development dependencies because TypeScript and Vite are build tools. Runtime dependencies remain available after the build for the API process.
 
 If the first web-service deployment fails, push the latest repository changes and choose **Manual Deploy → Deploy latest commit**. The startup is safe to retry: applied migrations and an existing administrator are detected and skipped. Leaving both bootstrap credential fields empty also skips administrator creation without preventing the web service from starting.
